@@ -1,27 +1,49 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![ReactJs](https://img.shields.io/badge/rEACTjs-0fa3b1?style=for-the-badge&logo=React&logoColor=white)
 
-Currently, two official plugins are available:
+![React Query](https://img.shields.io/badge/-React%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
-## Expanding the ESLint configuration
+https://github.com/masaGreen/ChatApp/assets/111172753/8e7c58af-5994-472f-8b7a-f80285d0dfbd
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+# Rental Management Ui
+- This UI consumes the Rentals-Management-System repo. 
+ 
+# Overview
 
-- Configure the top-level `parserOptions` property like this:
+- Authorized login and user approvals before they can use the app.
+- Information dashboard showing status of occupancy,payments and utilities management over the past month.
+- All CRUD operations involving units, tenants,utilities and approved users allowed to use the app
+- Quick downloads for variety of information like tenants with arrears and such.
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+# Requirements
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- Node 16 or later
+
+# Set-up
+- Make sure the api is running, see the set up instructions for api on
+  
+          https://github.com/masaGreen/Rental-Units-Management-System
+     
+- Clone this repository:
+ 
+         
+
+            git clone https://github.com/yourusername/Renta-Mnagement-Frontend.git
+         
+
+
+- **NB** make sure no application is running on port 5173 otherwise change port before running the application
+- Open three terminal windows and run the following on each.           
+
+            cd Renta-Mnagement-Frontend
+            npm install
+            npm run dev
+
+            
+- The application will start at http://localhost:5173
+  
+
+# License
+ Licensed under the MIT License.
