@@ -31,7 +31,7 @@ export default function Users() {
         navigate("/adminPanel")
       },
       onError: (error) => {
-
+        setEmailData(null)
         setErrorClose(true)
         setErrors((((error as AxiosError).response?.data) as CommonResponseMsg).message)
       }

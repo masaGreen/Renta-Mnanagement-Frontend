@@ -43,7 +43,9 @@ export const useAppContext = () => {
     return context
 
 }
+
 export default function MyAppContextProvider({ children }: Children) {
+
     const [colorMode, setColorMode] = useState(false)
     const [auth, setAuth] = useState(localStorage.getItem("key") ? true : false)
     const unitsMutation = useQuery<Data, Error>("fetchedUnits", apis.fetchAllUnits)
@@ -55,12 +57,11 @@ export default function MyAppContextProvider({ children }: Children) {
     const [search, setSearch] = useState("")
     const [unpaidUtils, setUnpaidUtlis] = useState(false)
     const [unApproved, setUnApproved] = useState(false)
+    
 
-
+    
     function handleLogout() {
-        localStorage.removeItem("key")
-        localStorage.removeItem("role")
-        localStorage.removeItem("email")
+        localStorage.clear();
         setAuth(false)
     }
 

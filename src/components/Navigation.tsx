@@ -46,12 +46,7 @@ export default function Navigation() {
                     </div>
                     <p className={`${colorMode ? "text-slate-200 font-semibold" : "text-teal-950"} text-xl `}>{username && username?.substring(0, 1).toUpperCase() + username?.substring(1)}</p>
                 </div>
-                <div className="">
-                    <Link to={"/login"} >
-                        <button onClick={handleLogout} type="submit" className="p-1 bg-red-400  text-slate-800 font-semibold text-sm rounded hover:bg-indigo-400 transition ease-in-out 300">logout</button>
-                    </Link>
-                </div>
-
+               
             </div>
 
             <div className={`grid-cols-1 sm:grid-cols-2 border-r-2   items-end  p-4 w-full  ${toggle ? "hidden" : "grid"}  md:grid md:grid-cols-1`}>
@@ -76,7 +71,7 @@ export default function Navigation() {
                         </svg>
                     </div>
                 </Link>
-                <Link to={"utilities"} onClick={() => setUnpaidUtlis(false)} className="navlinkDiv">
+                <Link to={"/utilities"} onClick={() => setUnpaidUtlis(false)} className="navlinkDiv">
                     <div className="navLink">
 
                         <span className={`${colorMode ? "text-slate-200" : ""} w-[80px]  text-xl text-right text-neutral-500 hover:text-slate-200 font-semibold`}>Utilities</span>
@@ -87,7 +82,7 @@ export default function Navigation() {
                     </div>
 
                 </Link>
-                <Link to={"downloads"} className="navlinkDiv">
+                <Link to={"/downloads"} className="navlinkDiv">
                     <div className="navLink ">
 
                         <div>
@@ -97,6 +92,17 @@ export default function Navigation() {
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 ">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
                         </svg>
+                    </div>
+                </Link>
+                <Link to={"/login"} className="navlinkDiv" onClick={handleLogout}>
+                    <div className="navLink ">
+
+                        <div>
+                            <span className={`${colorMode ? "text-slate-200" : ""} w-[80px]  text-xl text-right text-neutral-500 hover:text-slate-200 font-semibold`}>Logout</span>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+                        </svg>               
                     </div>
                 </Link>
 

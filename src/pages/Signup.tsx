@@ -7,6 +7,7 @@ import { useState } from "react";
 
 import { useAppContext } from "../contextApi/AppContext";
 import { CommonResponseMsg } from "../types/TypesDefinitions";
+import { SpinningCircles } from "react-loading-icons";
 
 
 export type SignupFormdata = {
@@ -17,7 +18,7 @@ export type SignupFormdata = {
 export default function Signup() {
     const navigate = useNavigate()
     const [errors, setErrors] = useState<string | null>(null)
-
+    const [loadingCircle, setLoadingCircle] = useState(false)
     const [emailError, setEmailError] = useState<string | undefined>(undefined)
     const [passwordError, setPasswordError] = useState<string | undefined>(undefined)
     const [roleError, setRoleError] = useState<string | undefined>(undefined)
@@ -30,14 +31,17 @@ export default function Signup() {
             onSuccess: () => {
                 reset()
                 navigate("/login")
+                setLoadingCircle(false)
             },
             onError: (error) => {
+                setLoadingCircle(false)
                 if ((error as AxiosError).response?.status === 400) {
                     const validityerrors = (error as AxiosError).response?.data as SignupFormdata
 
                     setEmailError(validityerrors.email);
                     setPasswordError(validityerrors.password);
                     setRoleError(validityerrors.role);
+                   
 
                 }
 
@@ -51,6 +55,9 @@ export default function Signup() {
     async function onSubmit(data: SignupFormdata) {
         mutation.mutate(data)
 
+    }
+    function handleLoading():void {
+        setLoadingCircle(true)
     }
 
 
@@ -93,7 +100,14 @@ export default function Signup() {
                         <div className="flex flex-col gap-2 md:flex-row items-center">
 
 
-                            <button type="submit" className="p-1 bg-indigo-400 text-slate-800 font-semibold text-lg rounded hover:bg-indigo-500 transition ease-in-out 300">signup</button>
+                            <button type="submit" onClick={handleLoading}
+                                className={`${!loadingCircle ? "p-1 bg-indigo-400 text-slate-800 font-semibold text-lg rounded hover:bg-indigo-500 transition ease-in-out 300" : "hidden"}`
+                                }>signup</button>
+                                
+                            {loadingCircle && <div className="flex  p-1 gap-1 rounded bg-indigo-500 text-red-500 items-center justify-center font-semibold ">
+                                <SpinningCircles />
+
+                            </div>}
                             <p className={`${colorMode ? "text-slate-100 font-bold" : ""}`}>already signed up <Link to="/login"><span className="underline font-semibold text-blue-800 text-lg">login</span></Link></p>
                         </div>
                     </div>
