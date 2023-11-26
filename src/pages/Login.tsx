@@ -8,7 +8,7 @@ import { useAppContext } from "../contextApi/AppContext";
 import { CommonResponseMsg, LoginFormdata, LoginRes } from "../types/TypesDefinitions";
 import { MyFormdata } from "../components/Users/ChangePassword";
 import { SpinningCircles } from "react-loading-icons";
-import imagebg from "../assets/large-landing.jpg"
+
 
 export default function Login() {
     const [errors, setErrors] = useState<string | null>(null)
