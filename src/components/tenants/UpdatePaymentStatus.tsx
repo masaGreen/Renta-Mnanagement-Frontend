@@ -6,11 +6,13 @@ import apis from "../ApiService";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../contextApi/AppContext";
 import { AxiosError } from "axios";
+import SpinningCircles from "react-loading-icons/dist/esm/components/spinning-circles";
 
 
 export default function UpdateStatus() {
     const { register, handleSubmit, reset } = useForm<StatusUpdateReqDto>();
     const [errors, setErrors] = useState<string | null>(null)
+    const [loadingCircle, setLoadingCircle] = useState(false)
     const [val, setVal] = useState("")
     const navigate = useNavigate()
     const client = useQueryClient()
@@ -18,11 +20,12 @@ export default function UpdateStatus() {
     const mutation = useMutation<boolean, Error, StatusUpdateReqDto>("updateTenantStatus", (data) => apis.updateTenantPaymentStatus(data), {
         onSuccess: () => {
             client.invalidateQueries("fetchedTenants")
+            setLoadingCircle(false)
             navigate("/tenants")
         },
         onError: (error) => {
-
-            setErrors((((error as AxiosError).response?.data) as CommonResponseMsg).message)
+            setLoadingCircle(false)
+            setErrors((((error as AxiosError).response?.data) as CommonResponseMsg).errorsMessages.message)
         }
     })
     async function onSubmit(data: StatusUpdateReqDto) {
@@ -30,6 +33,11 @@ export default function UpdateStatus() {
         mutation.mutate(data)
 
         reset()
+    }
+
+     
+    function handleLoading():void {
+        setLoadingCircle(true)
     }
 
     return (
@@ -61,8 +69,14 @@ export default function UpdateStatus() {
                         </div>
 
                         {errors && <div className="text-red-600"><p>{errors}</p></div>}
-                        <button type="submit" className="p-1 bg-indigo-400 text-slate-800 font-semibold text-lg rounded hover:bg-indigo-500 transition ease-in-out 300" >update</button>
+                        <button type="submit" onClick={handleLoading}
+                                className={`${!loadingCircle ? "p-1 bg-indigo-400 text-slate-800 font-semibold text-lg rounded hover:bg-indigo-500 transition ease-in-out 300" : "hidden"}`
+                                }>register</button>
+                                
+                            {loadingCircle && <div className="flex  p-1 gap-1 rounded bg-indigo-500 text-red-500 items-center justify-center font-semibold ">
+                                <SpinningCircles />
 
+                            </div>}
                     </div>
                 </form>
             </div>

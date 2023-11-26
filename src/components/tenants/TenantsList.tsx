@@ -51,7 +51,7 @@ export default function TenantsList() {
         } else if (search) {
 
           const allUtilities = tenantsMutation?.data as fetchTenants
-          const data = allUtilities?.tenants?.filter(tenant => tenant.unit.unitNumber.toLowerCase().includes(search.toLowerCase()))
+          const data = allUtilities?.tenants?.filter(tenant => tenant.unitNumber.toLowerCase().includes(search.toLowerCase()))
           setTenants(data)
         } else {
           const allUtilities = tenantsMutation?.data as fetchTenants
@@ -74,7 +74,7 @@ export default function TenantsList() {
     </div>
   }
 
-
+  console.log(tenants)
   return (
     <>
       <DeletionModal open={open} handleClose={handleClose} id={myid!} type={"tenant"} errors={errors!} setErrors={setErrors} />
@@ -110,7 +110,8 @@ export default function TenantsList() {
                 <td className='text-center font-sans text-sm '>{row.phone}</td>
                 <td className='text-center font-sans text-sm '>{row.start + "__" + `${(row.ended == null) ? "" : row.ended}`}</td>
                 <td className={`text-center font-sans text-sm ${row.payStatus === "unpaid" ? "text-red-500" : ""}`}>{row.payStatus}</td>
-                <td className='text-center font-sans text-sm '>{row.unit.unitNumber}</td>
+                <td className='text-center font-sans text-sm '>{row.unitNumber}</td>
+                
               </tr>
             ))}
           </tbody>

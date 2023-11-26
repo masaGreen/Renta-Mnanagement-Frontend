@@ -67,7 +67,7 @@ export default function UtilitiesList() {
   }
 
 
-
+  console.log(utilities)
 
   return (
     <>
@@ -79,13 +79,14 @@ export default function UtilitiesList() {
         {utilities?.length > 0 && <table className='w-full  md:w-[85%] bg-indigo-400 shadow'>
           <thead>
             <tr className="border-b-2 text-xs  md:text-base border-black">
-              <td className='text-right p-1 md:p-2  font-bold'>Id</td>
-              <td className='text-right p-1 md:p-2  font-bold'>Date</td>
-              <td className='text-right p-1 md:p-2  font-bold'>Waterbill</td>
-              <td className='text-right p-1 md:p-2  font-bold'>Garbage</td>
-              <td className='text-right p-1 md:p-2  font-bold'>Amount Paid</td>
-              <td className='text-right p-1 md:p-2  font-bold'>Status</td>
-              <td className='text-right p-1 md:p-2  font-bold'>Unitnumber</td>
+              <td className='text-center p-1 md:p-2  font-bold'>Id</td>
+              <td className='text-center p-1 md:p-2  font-bold'>Date</td>
+              <td className='text-center p-1 md:p-2  font-bold'>Waterbill</td>
+              <td className='text-center p-1 md:p-2  font-bold'>Garbage</td>
+              <td className='text-center p-1 md:p-2  font-bold'>Amt-Paid</td>
+              <td className='text-center p-1 md:p-2  font-bold'>Status</td>
+              <td className='text-center p-1 md:p-2  font-bold'>Bal</td>
+              <td className='text-center p-1 md:p-2  font-bold'>Unit</td>
             </tr>
           </thead>
           <tbody>
@@ -102,12 +103,13 @@ export default function UtilitiesList() {
                     </div>
                   </div>
                 </td>
-                <td className='text-center font-sans text-sm  '>{row.date.substring(0, 10)}</td>
+                <td className='text-center font-sans text-sm  '>{row.date[0]+"-"+row.date[1]+"-"+row.date[2]}</td>
                 <td className='text-center font-sans text-sm  '>{row.waterBill}</td>
                 <td className='text-center font-sans text-sm  '>{row.garbage}</td>
                 <td className='text-center font-sans text-sm  '>{row.amountPaid}</td>
                 <td className={`text-center font-sans text-sm ${row.status === "unpaid" ? "text-red-500" : ""}`}>{row.status}</td>
-                <td className='text-center font-sans text-sm  '>{row.unit.unitNumber}</td>
+                <td className='text-center font-sans text-sm  '>{row.carriedForward}</td>
+                <td className='text-center font-sans text-sm  '>{row.unitNumber}</td>
               </tr>
             ))}
           </tbody>

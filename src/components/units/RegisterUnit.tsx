@@ -8,6 +8,7 @@ import { useAppContext } from "../../contextApi/AppContext";
 import { AxiosError } from "axios";
 import { CommonResponseMsg } from "../../types/TypesDefinitions";
 import {  unitValidationErrors } from "../../types/ValidationErrorsTypes";
+import SpinningCircles from "react-loading-icons/dist/esm/components/spinning-circles";
 
 export type RegisterFormData = {
 
@@ -20,6 +21,7 @@ export type RegisterFormData = {
 
 export default function RegisterUnit() {
     const { register, handleSubmit, reset } = useForm<RegisterFormData>();
+    const [loadingCircle, setLoadingCircle] = useState(false)
     const [errors, setErrors] = useState<string | null>(null)
     const [plotnameError, setPlotnameErrors] = useState<string | undefined>(undefined)
     const [unitError, setUnitError] = useState<string | undefined>(undefined)
@@ -37,12 +39,13 @@ export default function RegisterUnit() {
             onSuccess: () => {
                 
                 client.invalidateQueries("fetchedUnits")
+                setLoadingCircle(false)
                 reset();
                 navigate("/units");
             },
             onError: (error) => {
 
-
+                setLoadingCircle(false)
                 if ((error as AxiosError).response?.status === 400) {
                     const validityerrors = (error as AxiosError).response?.data as unitValidationErrors
                     setPlotnameErrors(validityerrors.plotName);
@@ -50,7 +53,7 @@ export default function RegisterUnit() {
                     setRentErrors(validityerrors.rent);
                     setUnitError(validityerrors.unitNumber);
                 }
-                setErrors((((error as AxiosError).response?.data) as CommonResponseMsg).message)
+                setErrors((((error as AxiosError).response?.data) as CommonResponseMsg).errorsMessages.message)
             }
         }
 
@@ -61,6 +64,9 @@ export default function RegisterUnit() {
         mutate(data)
 
 
+    }
+    function handleLoading():void {
+        setLoadingCircle(true)
     }
 
 
@@ -109,14 +115,21 @@ export default function RegisterUnit() {
                                 </div>
                             }
                         </div>
-
-                        <button type="submit" className="p-1 bg-indigo-400 text-slate-800 font-semibold text-lg rounded hover:bg-indigo-500 transition ease-in-out 300" >register</button>
-                    </div>
-                    {errors &&
+                        {errors &&
                         <div>
                             <strong className="text-red-400">{errors}</strong>
                         </div>
                     }
+                        <button type="submit" onClick={handleLoading}
+                                className={`${!loadingCircle ? "p-1 bg-indigo-400 text-slate-800 font-semibold text-lg rounded hover:bg-indigo-500 transition ease-in-out 300" : "hidden"}`
+                                }>register</button>
+                                
+                            {loadingCircle && <div className="flex  p-1 gap-1 rounded bg-indigo-500 text-red-500 items-center justify-center font-semibold ">
+                                <SpinningCircles />
+
+                            </div>}
+                    </div>
+                   
                 </form>
             </div>
         </div>

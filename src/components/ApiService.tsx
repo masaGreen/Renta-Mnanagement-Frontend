@@ -89,7 +89,7 @@ const registerUnit = async (data: RegisterFormData) => {
 }
 
 const updateUnitStatus = async (data: UpdateResponse) => {
-    const res = await apiClient.get("units/updateUnitStatus/" + data, {
+    const res = await apiClient.get("units/updateUnitStatus/" + data.message, {
         headers: {
             "Content-Type": "Application/json",
             "Authorization": `Bearer ${localStorage.getItem("key")}`

@@ -8,13 +8,14 @@ import { useAppContext } from "../../contextApi/AppContext";
 import { AxiosError } from "axios";
 import { useState } from "react";
 import { tenantValidationErrors } from "../../types/ValidationErrorsTypes";
+import { SpinningCircles } from "react-loading-icons";
 
 
 
 export default function RegisterTenant() {
     const { register, handleSubmit, reset } = useForm<TenantReqType>();
     const [errors, setErrors] = useState<string | null>(null)
-
+    const [loadingCircle, setLoadingCircle] = useState(false)
     const [fnameError, setFnameError] = useState<string | undefined>(undefined)
     const [lnameError, setLnameError] = useState<string | undefined>(undefined)
     const [phoneError, setPhoneError] = useState<string | undefined>(undefined)
@@ -29,11 +30,14 @@ export default function RegisterTenant() {
             onSuccess: () => {
                 client.invalidateQueries("fetchedTenants")
                 client.invalidateQueries("fetchedUnits")
+                setLoadingCircle(false)
                 reset();
                 navigate("/tenants")
             },
             onError: (error) => {
-                if ((error as AxiosError).response?.status === 400) {
+                setLoadingCircle(false)
+                if ((error as AxiosError).response?.status === 400 
+                ) {
                     const validityerrors = (error as AxiosError).response?.data as tenantValidationErrors
 
                     setFnameError(validityerrors.firstName);
@@ -41,14 +45,17 @@ export default function RegisterTenant() {
                     setPhoneError(validityerrors.phone);
                     setUnitError(validityerrors.unitNumber);
                 }
-
-                setErrors((((error as AxiosError).response?.data) as CommonResponseMsg).message)
+                    
+                setErrors((((error as AxiosError).response?.data) as CommonResponseMsg).errorsMessages.message)
             }
 
         }
 
     )
-
+    
+    function handleLoading():void {
+        setLoadingCircle(true)
+    }
     async function onSubmit(data: TenantReqType) {
 
         mutate(data)
@@ -102,12 +109,21 @@ export default function RegisterTenant() {
                             }
                         </div>
 
-                        <button type="submit" className="p-1 bg-indigo-400 text-slate-800 font-semibold text-lg rounded hover:bg-indigo-500 transition ease-in-out 300" >register</button>
+                       
                         {errors &&
                             <div>
                                 <strong className="text-red-400">{errors}</strong>
                             </div>
                         }
+                        <button type="submit" onClick={handleLoading}
+                                className={`${!loadingCircle ? "p-1 bg-indigo-400 text-slate-800 font-semibold text-lg rounded hover:bg-indigo-500 transition ease-in-out 300" : "hidden"}`
+                                }>register</button>
+                                
+                            {loadingCircle && <div className="flex  p-1 gap-1 rounded bg-indigo-500 text-red-500 items-center justify-center font-semibold ">
+                                <SpinningCircles />
+
+                            </div>}
+                        
                     </div>
                 </form>
             </div>

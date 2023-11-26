@@ -34,7 +34,7 @@ export type TenantType = {
     start: string,
     ended: string | null,
     payStatus: string,
-    unit:UnitType
+    unitNumber: string
 }
 
 export type UtilityType = {
@@ -45,6 +45,7 @@ export type UtilityType = {
      unitNumber: string,
      amountPaid: string,
      status: string,
+     carriedForward:string,
      unit: UnitType
  }
 
@@ -64,7 +65,7 @@ export type RegisterUtilityFormData = {
      search:string
    }
 export type CommonResponseMsg = {
-     message: string
+     errorsMessages: {message:string}
 }
 export type User = {   
 
@@ -75,7 +76,8 @@ export type User = {
      token:string,
      role:string,
         
-      }
+}
+
 export type fetchUsers = {
      users: User[]
 }

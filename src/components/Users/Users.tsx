@@ -33,7 +33,7 @@ export default function Users() {
       onError: (error) => {
         setEmailData(null)
         setErrorClose(true)
-        setErrors((((error as AxiosError).response?.data) as CommonResponseMsg).message)
+        setErrors((((error as AxiosError).response?.data) as CommonResponseMsg).errorsMessages.message)
       }
     }
   )

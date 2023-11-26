@@ -5,7 +5,8 @@ import { useState } from "react";
 import { AxiosError } from "axios";
 import { useAppContext } from "../../contextApi/AppContext";
 import apis from "../ApiService";
-import { ChangePasswordFormdata } from "../../types/TypesDefinitions";
+import { ChangePasswordFormdata, CommonResponseMsg } from "../../types/TypesDefinitions";
+import SpinningCircles from "react-loading-icons/dist/esm/components/spinning-circles";
 
 
 
@@ -14,17 +15,14 @@ export type MyFormdata = {
     password: string
 }
 export type LoginRes = {
-    id: number,
-    email: string,
-    status: boolean,
+   
     message: string,
-    token: string,
-    role: string,
+    
 }
 
 export default function changePassword() {
     const [errors, setErrors] = useState<string | null>(null)
-
+    const [loadingCircle, setLoadingCircle] = useState(false)
     const [oldPasswordError, setOldPasswordError] = useState<string | undefined>(undefined)
     const [newPasswordError, setNewPasswordError] = useState<string | undefined>(undefined)
 
@@ -36,11 +34,14 @@ export default function changePassword() {
         (data) => apis.changePassword(data),
         {
             onSuccess: () => {
+                
                 handleLogout()
+                setLoadingCircle(false)
                 reset()
             },
 
             onError: (error) => {
+                setLoadingCircle(false)
                 if ((error as AxiosError).response?.status === 400) {
                     const validityerrors = (error as AxiosError).response?.data as ChangePasswordFormdata;
 
@@ -49,12 +50,14 @@ export default function changePassword() {
 
                 }
 
-                setErrors((((error as AxiosError).response?.data) as LoginRes).message)
+                setErrors((((error as AxiosError).response?.data) as CommonResponseMsg).errorsMessages.message)
             }
         }
     )
 
-
+    function handleLoading():void {
+        setLoadingCircle(true)
+    }
     async function onSubmit(data: ChangePasswordFormdata) {
 
         mutation.mutate(data)
@@ -87,13 +90,19 @@ export default function changePassword() {
                                 </div>
                             }
                         </div>
-                        {errors && <div>
-                            <strong className="text-red-400">{errors}</strong>
-                        </div>}
-                        <div className="flex flex-col gap-2 md:flex-row items-center">
-                            <button type="submit" className="p-1 bg-indigo-400 text-slate-800 font-semibold text-lg rounded hover:bg-indigo-500 transition ease-in-out 300">changePassword</button>
+                        {errors &&
+                            <div>
+                                <strong className="text-red-400">{errors}</strong>
+                            </div>
+                        }
+                        <button type="submit" onClick={handleLoading}
+                                className={`${!loadingCircle ? "p-1 bg-indigo-400 text-slate-800 font-semibold text-lg rounded hover:bg-indigo-500 transition ease-in-out 300" : "hidden"}`
+                                }>register</button>
+                                
+                            {loadingCircle && <div className="flex  p-1 gap-1 rounded bg-indigo-500 text-red-500 items-center justify-center font-semibold ">
+                                <SpinningCircles />
 
-                        </div>
+                            </div>}
                     </div>
                 </form>
                 {/* <button type="button" onClick={handleHello}>log hello</button> */}
