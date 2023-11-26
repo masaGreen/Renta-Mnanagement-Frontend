@@ -6,7 +6,7 @@ export default function Downloads(){
     const {colorMode} = useAppContext()
 
     async function handleDownload(link: string) {
-        const url = "http://localhost:8080/v1/"+link
+        const url = "https://rental-backend-0m96.onrender.com/v1/"+link
         try {
             const res = await axios.get(url, {
                 headers:{

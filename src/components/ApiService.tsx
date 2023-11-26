@@ -7,11 +7,11 @@ import { ApprovalData } from "../pages/UserApproval"
 
 
 const apiClient = axios.create({
-    baseURL: "http://localhost:8080/v1/"
+    baseURL: "https://rental-backend-0m96.onrender.com/v1/"
 })
 
 const signUp = async (data: SignupFormdata) => {
-    const res = await axios.post("http://localhost:8080/v1/auth/signup", data,
+    const res = await axios.post("https://rental-backend-0m96.onrender.com/v1/auth/signup", data,
     {
         headers: {
             "Content-Type": "Application/json",
@@ -21,7 +21,7 @@ const signUp = async (data: SignupFormdata) => {
     return res.data;
 }
 const logUser = async (data: LoginFormdata) => {
-    const res = await axios.post("http://localhost:8080/v1/auth/login", data, {
+    const res = await axios.post("https://rental-backend-0m96.onrender.com/v1/auth/login", data, {
         headers: {
             "Content-Type": "Application/json",
            
