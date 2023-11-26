@@ -62,9 +62,9 @@ export default function Signup() {
 
 
     return (
-        <div className={`flex flex-col  gap-1 items-center min-h-screen ${colorMode ? "bg-indigo-200" : ""} `}>
+        <div className={`flex flex-col bg-hero gap-1 items-center min-h-screen ${colorMode ? "bg-indigo-200" : ""} `}>
             <div>
-                <h2 className={`text-indigo-900 text-xl mt-2 mb-2 md:mt-6 ${colorMode ? "text-slate-800" : ""}`}>Signup to MyRentals Manager</h2>
+                <h2 className={`text-indigo-200 text-xl mt-2 mb-2 md:mt-6 ${colorMode ? "text-slate-800" : ""}`}>Signup to MyRentals Manager</h2>
             </div>
             <div className={`${colorMode ? "bg-slate-400 shadow-neutral-500 shadow-md " : ""} w-full p-2 md:w-1/3 rounded-lg  border-indigo-200 shadow-sm md:p-2 `}>
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -108,7 +108,9 @@ export default function Signup() {
                                 <SpinningCircles />
 
                             </div>}
-                            <p className={`${colorMode ? "text-slate-100 font-bold" : ""}`}>already signed up <Link to="/login"><span className="underline font-semibold text-blue-800 text-lg">login</span></Link></p>
+                            <p className="text-indigo-200 ">already signed up <Link to="/login"><span className="underline font-semibold text-black text-lg">login</span></Link></p>
+
+                            {/* <p className={`${colorMode ? "text-indigo-200 font-bold" : ""}`}>already signed up <Link to="/login"><span className="underline font-semibold text-blue-800 text-lg">login</span></Link></p> */}
                         </div>
                     </div>
                 </form>

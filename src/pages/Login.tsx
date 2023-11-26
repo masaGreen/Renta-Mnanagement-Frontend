@@ -8,7 +8,7 @@ import { useAppContext } from "../contextApi/AppContext";
 import { CommonResponseMsg, LoginFormdata, LoginRes } from "../types/TypesDefinitions";
 import { MyFormdata } from "../components/Users/ChangePassword";
 import { SpinningCircles } from "react-loading-icons";
-
+import imagebg from "../assets/large-landing.jpg"
 
 export default function Login() {
     const [errors, setErrors] = useState<string | null>(null)
@@ -58,9 +58,9 @@ export default function Login() {
     }
 
     return (
-        <div className={`flex flex-col  gap-1 items-center min-h-screen ${colorMode ? "bg-indigo-200" : ""} `} >
+        <div  className={`flex bg-hero flex-col gap-1 items-center min-h-screen ${colorMode ? "bg-indigo-200" : ""} `} >
             <div>
-                <h2 className={`text-indigo-900 text-xl mt-2 mb-2 md:mt-6 ${colorMode ? "text-slate-800" : ""}`}>Login to MyRentals Manager</h2>
+                <h2 className={`text-indigo-200 text-xl mt-2 mb-2 md:mt-6 ${colorMode ? "text-slate-800" : ""}`}>Login to MyRentals Manager</h2>
             </div>
             <div className={`${colorMode ? "bg-slate-400 shadow-neutral-500 shadow-md " : ""} w-full p-2 md:w-1/3 rounded-lg  border-indigo-200 shadow-sm md:p-2 `}>
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -85,7 +85,7 @@ export default function Login() {
                                 <SpinningCircles />
 
                             </div>}
-                            <p>Not signed up <Link to="/signup"><span className="underline font-semibold text-blue-800 text-lg">Signup</span></Link></p>
+                            <p className="text-indigo-200 ">Not signed up <Link to="/signup"><span className="underline font-semibold text-black text-lg">Signup</span></Link></p>
                         </div>
                     </div>
                 </form>
