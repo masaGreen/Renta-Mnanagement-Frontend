@@ -26,8 +26,9 @@ export default function UpdateStatus() {
     const mutation = useMutation<boolean, Error, UpdateResponse>("updateUnitStatus", (data) => apis.updateUnitStatus(data), {
         onSuccess: () => {
             client.invalidateQueries("fetchedUnits")
-            setLoadingCircle(false)
             navigate("/units")
+            setLoadingCircle(false)
+         
         },
         onError: (error) => {
             setLoadingCircle(false)

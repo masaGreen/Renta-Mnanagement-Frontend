@@ -7,6 +7,7 @@ import SpinningCircles from 'react-loading-icons/dist/esm/components/spinning-ci
 
 import { useAppContext } from '../../contextApi/AppContext';
 import { ContextType, UnitType, fetchUnits } from '../../types/TypesDefinitions';
+import { CircularProgressbar } from 'react-circular-progressbar';
 
 
 
@@ -78,8 +79,8 @@ export default function UnitsList() {
       <DeletionModal open={open} handleClose={handleClose} id={myid!} type='unit' errors={errors!} setErrors={setErrors} />
 
       <div className="flex justify-center mt-4 p-1 md:p-2">
-        {(units === undefined || units && units.length === 0) && <div className={`${colorMode ? "text-slate-300" : ""} inline-flex mx-auto text-center text-lg `}> <strong>No units found</strong></div>}
-
+        {( units && units.length === 0) && <div className={`${colorMode ? "text-slate-300" : ""} inline-flex mx-auto text-center text-lg `}> <strong>No units found</strong></div>}
+        {(unitsMutation.isLoading) && <div className={`${colorMode ? "text-slate-300" : ""} inline-flex mx-auto text-center text-lg `}> <CircularProgressbar value={1}/></div>}
         {units?.length > 0 && <table className='table-auto w-full  md:w-[80%]   bg-indigo-400 '>
           <thead>
             <tr className="border-b-2 text-xs md:text-base  border-black ">

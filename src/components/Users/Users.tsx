@@ -27,8 +27,9 @@ export default function Users() {
     {
       onSuccess: () => {
         client.invalidateQueries("fetchedUsers")
-        setEmailData(null)
+      
         navigate("/adminPanel")
+        setEmailData(null)
       },
       onError: (error) => {
         setEmailData(null)

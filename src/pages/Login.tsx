@@ -5,7 +5,7 @@ import apis from "../components/ApiService";
 import { useState } from "react";
 import { AxiosError } from "axios";
 import { useAppContext } from "../contextApi/AppContext";
-import { LoginFormdata, LoginRes } from "../types/TypesDefinitions";
+import { CommonResponseMsg, LoginFormdata, LoginRes } from "../types/TypesDefinitions";
 import { MyFormdata } from "../components/Users/ChangePassword";
 import { SpinningCircles } from "react-loading-icons";
 
@@ -42,7 +42,7 @@ export default function Login() {
             onError: (error) => {
                 console.log(error)
                 setLoadingCircle(false)
-                setErrors((((error as AxiosError).response?.data) as LoginRes).message)
+                setErrors((((error as AxiosError).response?.data) as CommonResponseMsg).errorsMessages.message)
             }
         }
     )

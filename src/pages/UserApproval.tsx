@@ -3,6 +3,9 @@ import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import apis from "../components/ApiService";
 import { useAppContext } from "../contextApi/AppContext";
+import { AxiosError } from "axios";
+import { CommonResponseMsg } from "../types/TypesDefinitions";
+import { useState } from "react";
 
 
 export type ApprovalData = {
@@ -11,6 +14,7 @@ export type ApprovalData = {
 }
 
 export default function UserApproval() {
+    const [errors, setErrors] = useState<string|null>(null)
     const { register, handleSubmit, reset } = useForm<ApprovalData>();
     const navigate = useNavigate()
     const { colorMode } = useAppContext()
@@ -18,10 +22,12 @@ export default function UserApproval() {
         "approveUser",
         (data) => apis.approveUser(data),
         {
-            onSuccess: (data) => {
-                console.log(data)
+            onSuccess: () => {
                 navigate("/")
             },
+            onError: (error)=>{
+                setErrors((((error as AxiosError).response?.data) as CommonResponseMsg).errorsMessages.message)
+            }
         }
     )
 
@@ -45,7 +51,7 @@ export default function UserApproval() {
 
                         </div>
 
-                        {mutation.isError && <div className="text-red-600"><p>{JSON.stringify(mutation.error)}</p></div>}
+                        {errors && <div className="text-red-600"><p>{errors}</p></div>}
                         <div className="flex flex-col gap-2 md:flex-row items-center">
                             <button type="submit" className="p-1 bg-indigo-400 text-slate-800 font-semibold text-lg rounded hover:bg-indigo-500 transition ease-in-out 300">Approve</button>
 

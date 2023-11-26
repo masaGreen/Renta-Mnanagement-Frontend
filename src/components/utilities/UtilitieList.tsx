@@ -6,6 +6,8 @@ import { useNavigate, useOutletContext } from 'react-router-dom';
 import { ContextType, UtilityType, fetchUtilities } from '../../types/TypesDefinitions';
 import { SpinningCircles } from 'react-loading-icons';
 import { useAppContext } from '../../contextApi/AppContext';
+import { CircularProgressbar } from 'react-circular-progressbar';
+
 
 
 
@@ -67,7 +69,6 @@ export default function UtilitiesList() {
   }
 
 
-  console.log(utilities)
 
   return (
     <>
@@ -75,7 +76,8 @@ export default function UtilitiesList() {
 
       <div className='flex justify-center mt-4 p-2  w-full'>
 
-        {(utilities === undefined || utilities && utilities.length === 0) && <div className={`${colorMode ? "text-slate-300" : ""} inline-flex mx-auto text-center text-lg `}> <strong>No utilities found</strong></div>}
+        {(utilities && utilities.length === 0) && <div className={`${colorMode ? "text-slate-300" : ""} inline-flex mx-auto text-center text-lg `}> <strong>No utilities found</strong></div>}
+        {(utilities === undefined) && <div className={`${colorMode ? "text-slate-300" : ""} inline-flex mx-auto text-center text-lg `}> <SpinningCircles/> </div>}
         {utilities?.length > 0 && <table className='w-full  md:w-[85%] bg-indigo-400 shadow'>
           <thead>
             <tr className="border-b-2 text-xs  md:text-base border-black">

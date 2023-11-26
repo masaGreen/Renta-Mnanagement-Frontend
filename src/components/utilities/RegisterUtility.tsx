@@ -26,9 +26,9 @@ export default function RegisterUtlitity() {
         {
             onSuccess: () => {
                 client.invalidateQueries("fetchedUtilities")
-                setLoadingCircle(false)
-                reset();
                 navigate("/utilities")
+                reset();
+                setLoadingCircle(false)
             },
             onError: (error) => {
                 setLoadingCircle(false)

@@ -45,7 +45,7 @@ export default function Signup() {
 
                 }
 
-                setErrors((((error as AxiosError).response?.data) as CommonResponseMsg).message)
+                setErrors((((error as AxiosError).response?.data) as CommonResponseMsg).errorsMessages.message)
             }
         }
 

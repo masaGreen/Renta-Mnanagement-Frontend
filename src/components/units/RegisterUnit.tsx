@@ -39,9 +39,9 @@ export default function RegisterUnit() {
             onSuccess: () => {
                 
                 client.invalidateQueries("fetchedUnits")
+                navigate("/units");
                 setLoadingCircle(false)
                 reset();
-                navigate("/units");
             },
             onError: (error) => {
 
