@@ -23,7 +23,7 @@ export default function Login() {
         {
             onSuccess: (data) => {
                 setAuth(true)
-                console.log(data.token)
+                
                 localStorage.setItem("key", data.token)
 
                 localStorage.setItem("role", data.role)

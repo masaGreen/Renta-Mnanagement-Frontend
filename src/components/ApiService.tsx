@@ -5,8 +5,8 @@ import { RegisterFormData } from "./units/RegisterUnit"
 import { UpdateResponse } from "./units/UpdateStatus"
 import { ApprovalData } from "../pages/UserApproval"
 
-const BASE_URL = "http://localhost:8080/v1/"
-// const REMOTE_BASE_URL = "https://rental-backend-0m96.onrender.com/v1/"
+// const BASE_URL = "http://localhost:8080/v1/"
+const BASE_URL = "https://rental-backend-0m96.onrender.com/v1/"
 const apiClient = axios.create({
     baseURL: BASE_URL
 })
