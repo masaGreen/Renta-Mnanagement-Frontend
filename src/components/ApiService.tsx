@@ -5,13 +5,14 @@ import { RegisterFormData } from "./units/RegisterUnit"
 import { UpdateResponse } from "./units/UpdateStatus"
 import { ApprovalData } from "../pages/UserApproval"
 
-
+const BASE_URL = "http://localhost:8080/v1/"
+// const REMOTE_BASE_URL = "https://rental-backend-0m96.onrender.com/v1/"
 const apiClient = axios.create({
-    baseURL: "https://rental-backend-0m96.onrender.com/v1/"
+    baseURL: BASE_URL
 })
 
 const signUp = async (data: SignupFormdata) => {
-    const res = await axios.post("https://rental-backend-0m96.onrender.com/v1/auth/signup", data,
+    const res = await axios.post(BASE_URL+"auth/signup", data,
     {
         headers: {
             "Content-Type": "Application/json",
@@ -21,9 +22,9 @@ const signUp = async (data: SignupFormdata) => {
     return res.data;
 }
 const logUser = async (data: LoginFormdata) => {
-    const res = await axios.post("https://rental-backend-0m96.onrender.com/v1/auth/login", data, {
+    const res = await axios.post(BASE_URL+"auth/login", data, {
         headers: {
-            "Content-Type": "Application/json",
+            "Content-Type": "application/json",
            
         }
     })
@@ -34,7 +35,7 @@ const approveUser = async (data: ApprovalData) => {
     console.log(localStorage.getItem("key"))
     const res = await apiClient.post("auth/approveUser", data, {
         headers: {
-            "Content-Type": "Application/json",
+            "Content-Type": "application/json",
             "Authorization": `Bearer ${localStorage.getItem("key")}`
         }
     })
@@ -43,7 +44,7 @@ const approveUser = async (data: ApprovalData) => {
 const changePassword = async (data: ChangePasswordFormdata) => {
     const res = await apiClient.post("auth/changePassword", data,{
         headers: {
-            "Content-Type": "Application/json",
+            "Content-Type": "application/json",
             "Authorization": `Bearer ${localStorage.getItem("key")}`
         }
     })
@@ -52,7 +53,7 @@ const changePassword = async (data: ChangePasswordFormdata) => {
 const fetchUsers = async () => {
     const res = await apiClient.get("auth",{
         headers: {
-            "Content-Type": "Application/json",
+            "Content-Type": "application/json",
             "Authorization": `Bearer ${localStorage.getItem("key")}`
         }
     })
@@ -61,7 +62,7 @@ const fetchUsers = async () => {
 const deleteUserById = async (id: number) => {
     const res = await apiClient.delete(`auth/deleteUser/${id}`,{
         headers: {
-            "Content-Type": "Application/json",
+            "Content-Type": "application/json",
             "Authorization": `Bearer ${localStorage.getItem("key")}`
         }
     })
@@ -72,7 +73,7 @@ const deleteUserById = async (id: number) => {
 const fetchAllUnits = async () => {
     const res = await apiClient.get("units",{
         headers: {
-            "Content-Type": "Application/json",
+            "Content-Type": "application/json",
             "Authorization": `Bearer ${localStorage.getItem("key")}`
         }
     })
@@ -81,7 +82,7 @@ const fetchAllUnits = async () => {
 const registerUnit = async (data: RegisterFormData) => {
     const res = await apiClient.post("units", data, {
         headers: {
-            "Content-Type": "Application/json",
+            "Content-Type": "application/json",
             "Authorization": `Bearer ${localStorage.getItem("key")}`
         }
     })
@@ -91,7 +92,7 @@ const registerUnit = async (data: RegisterFormData) => {
 const updateUnitStatus = async (data: UpdateResponse) => {
     const res = await apiClient.get("units/updateUnitStatus/" + data.message, {
         headers: {
-            "Content-Type": "Application/json",
+            "Content-Type": "application/json",
             "Authorization": `Bearer ${localStorage.getItem("key")}`
         }
     })
@@ -101,7 +102,7 @@ const updateUnitStatus = async (data: UpdateResponse) => {
 const deleteUnitById = async (id: number) => {
     const res = await apiClient.delete(`units/deleteUnit/${id}`, {
         headers: {
-            "Content-Type": "Application/json",
+            "Content-Type": "application/json",
             "Authorization": `Bearer ${localStorage.getItem("key")}`
         }
     })
@@ -112,7 +113,7 @@ const deleteUnitById = async (id: number) => {
 const fetchAllTenants = async () => {
     const res = await apiClient.get("tenants", {
         headers: {
-            "Content-Type": "Application/json",
+            "Content-Type": "application/json",
             "Authorization": `Bearer ${localStorage.getItem("key")}`
         }
     })
@@ -121,7 +122,7 @@ const fetchAllTenants = async () => {
 const registerTenant = async (data: TenantReqType) => {
     const res = await apiClient.post("tenants", data, {
         headers: {
-            "Content-Type": "Application/json",
+            "Content-Type": "application/json",
             "Authorization": `Bearer ${localStorage.getItem("key")}`
         }
     })
@@ -131,7 +132,7 @@ const registerTenant = async (data: TenantReqType) => {
 const updateTenantPaymentStatus = async (data: StatusUpdateReqDto) => {
     const res = await apiClient.post("tenants/updatePaymentStatus" ,data, {
         headers: {
-            "Content-Type": "Application/json",
+            "Content-Type": "application/json",
             "Authorization": `Bearer ${localStorage.getItem("key")}`
         }
     })
@@ -140,7 +141,7 @@ const updateTenantPaymentStatus = async (data: StatusUpdateReqDto) => {
 const deleteTenantById = async (id: number) => {
     const res = await apiClient.delete(`tenants/deleteTenant/${id}`, {
         headers: {
-            "Content-Type": "Application/json",
+            "Content-Type": "application/json",
             "Authorization": `Bearer ${localStorage.getItem("key")}`
         }
     })
@@ -152,7 +153,7 @@ const deleteTenantById = async (id: number) => {
 const fetchAllUtilities = async () => {
     const res = await apiClient.get("utilities", {
         headers: {
-            "Content-Type": "Application/json",
+            "Content-Type": "application/json",
             "Authorization": `Bearer ${localStorage.getItem("key")}`
         }
     })
@@ -161,7 +162,7 @@ const fetchAllUtilities = async () => {
 const registerUtility = async (data: RegisterUtilityFormData) => {
     const res = await apiClient.post("utilities", data, {
         headers: {
-            "Content-Type": "Application/json",
+            "Content-Type": "application/json",
             "Authorization": `Bearer ${localStorage.getItem("key")}`
         }
     }
