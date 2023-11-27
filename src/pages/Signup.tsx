@@ -19,6 +19,7 @@ export default function Signup() {
     const navigate = useNavigate()
     const [errors, setErrors] = useState<string | null>(null)
     const [loadingCircle, setLoadingCircle] = useState(false)
+    const [val, setVal] = useState("")
     const [emailError, setEmailError] = useState<string | undefined>(undefined)
     const [passwordError, setPasswordError] = useState<string | undefined>(undefined)
     const [roleError, setRoleError] = useState<string | undefined>(undefined)
@@ -89,7 +90,17 @@ export default function Signup() {
                         </div>
                         <div className="formdiv">
                             <label className={`text-xl font-bold ${colorMode ? "text-slate-200" : ""}`}>role</label>
-                            <input className='p-2 rounded outline-indigo-200' type="text" {...register("role")} />
+                            <select
+                                className='p-2 rounded outline-indigo-200'
+                                value={val}
+                                {...register("role")}
+                                onChange={(e: React.SyntheticEvent<HTMLSelectElement, Event>): void => setVal((e.target as HTMLSelectElement).value)}
+                            >
+                                
+                                <option value={"ADMIN"} >ADMIN</option>
+                                <option value={"USER"} >USER</option>
+
+                            </select>
                             {roleError &&
                                 <div>
                                     <strong className="text-red-400">{roleError}</strong>
