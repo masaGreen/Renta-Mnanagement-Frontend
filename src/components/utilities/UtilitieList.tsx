@@ -19,7 +19,7 @@ export default function UtilitiesList() {
   const [errors, setErrors] = useState<string | null>(null)
   const navigate = useNavigate()
 
-  const { utilitiesMutation, unpaidUtils, colorMode, auth } = useAppContext()
+  const { utilitiesMutation, unpaidUtils, colorMode, auth,usersMutation } = useAppContext()
   const handleOpen = (id: number) => {
     setOpen(true)
     setId(id)
@@ -53,7 +53,7 @@ export default function UtilitiesList() {
       }
 
     },
-    [unpaidUtils, search, utilitiesMutation,auth]
+    [unpaidUtils, search, utilitiesMutation,auth, usersMutation]
   )
 
   if (utilitiesMutation.isFetching) {

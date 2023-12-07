@@ -38,7 +38,7 @@ export default function UnitsList() {
   }
 
 
-  const { unitsMutation, availability, colorMode, auth } = useAppContext()
+  const { unitsMutation, availability, colorMode, auth,usersMutation } = useAppContext()
 
   useEffect(
     () => {
@@ -60,7 +60,7 @@ export default function UnitsList() {
         }
       }
     },
-    [availability, search, unitsMutation, auth]
+    [availability, search, unitsMutation, auth,usersMutation]
   )
 
 

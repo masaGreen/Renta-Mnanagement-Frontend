@@ -27,7 +27,7 @@ export default function TenantsList() {
 
   const [tenants, setTenants] = useState<TenantType[]>([])
 
-  const { tenantsMutation, arrears, colorMode,auth } = useAppContext()
+  const { tenantsMutation, arrears, colorMode,auth , usersMutation} = useAppContext()
 
 
   useEffect(
@@ -60,7 +60,7 @@ export default function TenantsList() {
         }
       }
     },
-    [arrears, search, tenantsMutation, auth]
+    [arrears, search, tenantsMutation,usersMutation, auth]
   )
 
 
