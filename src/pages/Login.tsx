@@ -62,7 +62,7 @@ export default function Login() {
             <div>
                 <h2 className={`text-black text-xl mt-2 mb-2 md:mt-6 ${colorMode ? "text-slate-800" : ""}`}>Login to MyRentals Manager</h2>
             </div>
-            <div className={`${colorMode ? "bg-slate-400 shadow-neutral-500 shadow-md " : ""} bg-w-full bg-indigo-800 p-2 md:w-1/3 rounded-lg  border-indigo-200 shadow-sm md:p-2 `}>
+            <div className={`${colorMode ? "bg-slate-400 shadow-neutral-500 shadow-md " : ""} w-full bg-indigo-800 p-2 md:w-1/3 rounded-lg  border-indigo-200 shadow-sm md:p-2 `}>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex flex-col gap-2 items-center">
                         <div className="formdiv">
