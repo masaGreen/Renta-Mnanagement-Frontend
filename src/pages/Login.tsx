@@ -58,20 +58,20 @@ export default function Login() {
     }
 
     return (
-        <div  className={`flex bg-hero flex-col gap-1 items-center min-h-screen ${colorMode ? "bg-indigo-200" : ""} `} >
+        <div  className={`flex bg-indigo-300 items-center justify-center bg-hero  flex-col gap-1 items-center min-h-screen ${colorMode ? "bg-indigo-200" : ""} `} >
             <div>
-                <h2 className={`text-indigo-200 text-xl mt-2 mb-2 md:mt-6 ${colorMode ? "text-slate-800" : ""}`}>Login to MyRentals Manager</h2>
+                <h2 className={`text-black text-xl mt-2 mb-2 md:mt-6 ${colorMode ? "text-slate-800" : ""}`}>Login to MyRentals Manager</h2>
             </div>
-            <div className={`${colorMode ? "bg-slate-400 shadow-neutral-500 shadow-md " : ""} w-full p-2 md:w-1/3 rounded-lg  border-indigo-200 shadow-sm md:p-2 `}>
+            <div className={`${colorMode ? "bg-slate-400 shadow-neutral-500 shadow-md " : ""} bg-w-full bg-indigo-800 p-2 md:w-1/3 rounded-lg  border-indigo-200 shadow-sm md:p-2 `}>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex flex-col gap-2 items-center">
                         <div className="formdiv">
-                            <label className={`text-xl font-bold ${colorMode ? "text-slate-200" : ""}`}>email</label>
+                            <label className={`text-xl font-bold  text-slate-100 ${colorMode ? "text-navyblue" : ""}`}>email</label>
                             <input className='p-2 rounded outline-indigo-200' type="text" {...register("email")} />
 
                         </div>
                         <div className="formdiv">
-                            <label className={`text-xl font-bold  ${colorMode ? "text-slate-200" : ""}`}>password</label>
+                            <label className={`text-xl font-bold  text-slate-100 ${colorMode ? "text-navyblue" : ""}`}>password</label>
                             <input className='p-2 rounded outline-indigo-200' type="password" {...register("password")} />
 
                         </div>
@@ -85,7 +85,7 @@ export default function Login() {
                                 <SpinningCircles />
 
                             </div>}
-                            <p className="text-indigo-200 ">Not signed up <Link to="/signup"><span className="underline font-semibold text-black text-lg">Signup</span></Link></p>
+                            <p className="text-indigo-200 ">Not signed up <Link to="/signup"><span className="underline font-semibold text-slate-200 text-lg">Signup</span></Link></p>
                         </div>
                     </div>
                 </form>

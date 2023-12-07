@@ -10,7 +10,8 @@ export default {
        custom: ["Roboto", "sans-serif"] 
       },
       backgroundImage: {
-        'hero': "url('../src/assets/large-landing.jpg')"
+        // 'hero': "url('../src/assets/large-landing.jpg')"
+        
       }
       
     },

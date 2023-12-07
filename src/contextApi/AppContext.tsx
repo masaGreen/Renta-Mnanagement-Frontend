@@ -62,7 +62,7 @@ export default function MyAppContextProvider({ children }: Children) {
     
     function handleLogout() {
         localStorage.clear();
-        setAuth(false)
+        setAuth(false);
     }
 
 

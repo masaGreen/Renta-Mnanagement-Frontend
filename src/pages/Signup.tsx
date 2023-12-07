@@ -63,15 +63,15 @@ export default function Signup() {
 
 
     return (
-        <div className={`flex flex-col bg-hero gap-1 items-center min-h-screen ${colorMode ? "bg-indigo-200" : ""} `}>
+        <div className={`flex bg-indigo-300 items-center justify-center flex-col bg-hero gap-1 items-center min-h-screen ${colorMode ? "bg-indigo-200" : ""} `}>
             <div>
-                <h2 className={`text-indigo-200 text-xl mt-2 mb-2 md:mt-6 ${colorMode ? "text-slate-800" : ""}`}>Signup to MyRentals Manager</h2>
+                <h2 className={`text-black text-xl mt-2 mb-2 md:mt-6 ${colorMode ? "text-slate-800" : ""}`}>Signup to MyRentals Manager</h2>
             </div>
-            <div className={`${colorMode ? "bg-slate-400 shadow-neutral-500 shadow-md " : ""} w-full p-2 md:w-1/3 rounded-lg  border-indigo-200 shadow-sm md:p-2 `}>
+            <div className={`${colorMode ? "bg-slate-400 shadow-neutral-500 shadow-md " : ""} w-full bg-indigo-800 p-2 md:w-1/3 rounded-lg  border-indigo-200 shadow-sm md:p-2 `}>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex flex-col gap-2 items-center">
                         <div className="formdiv">
-                            <label className={`text-xl font-bold ${colorMode ? "text-slate-200" : ""}`}>email</label>
+                            <label className={`text-xl text-slate-100 font-bold ${colorMode ? "text-slate-200" : ""}`}>email</label>
                             <input className='p-2 rounded outline-indigo-200' type="text" {...register("email")} />
                             {emailError &&
                                 <div>
@@ -80,7 +80,7 @@ export default function Signup() {
                             }
                         </div>
                         <div className="formdiv">
-                            <label className={`text-xl font-bold ${colorMode ? "text-slate-200" : ""}`}>password</label>
+                            <label className={`text-xl text-slate-100 font-bold ${colorMode ? "text-slate-200" : ""}`}>password</label>
                             <input className='p-2 rounded outline-indigo-200' type="password" {...register("password")} />
                             {passwordError &&
                                 <div>
@@ -89,7 +89,7 @@ export default function Signup() {
                             }
                         </div>
                         <div className="formdiv">
-                            <label className={`text-xl font-bold ${colorMode ? "text-slate-200" : ""}`}>role</label>
+                            <label className={`text-xl text-slate-100 font-bold ${colorMode ? "text-slate-200" : ""}`}>role</label>
                             <select
                                 className='p-2 rounded outline-indigo-200'
                                 value={val}
@@ -119,7 +119,7 @@ export default function Signup() {
                                 <SpinningCircles />
 
                             </div>}
-                            <p className="text-indigo-200 ">already signed up <Link to="/login"><span className="underline font-semibold text-black text-lg">login</span></Link></p>
+                            <p className="text-indigo-200 ">already signed up <Link to="/login"><span className="underline font-semibold text-slate-200 text-lg">login</span></Link></p>
 
                             {/* <p className={`${colorMode ? "text-indigo-200 font-bold" : ""}`}>already signed up <Link to="/login"><span className="underline font-semibold text-blue-800 text-lg">login</span></Link></p> */}
                         </div>

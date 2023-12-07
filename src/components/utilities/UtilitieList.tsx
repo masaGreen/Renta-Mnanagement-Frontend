@@ -19,7 +19,7 @@ export default function UtilitiesList() {
   const [errors, setErrors] = useState<string | null>(null)
   const navigate = useNavigate()
 
-  const { utilitiesMutation, unpaidUtils, colorMode } = useAppContext()
+  const { utilitiesMutation, unpaidUtils, colorMode, auth } = useAppContext()
   const handleOpen = (id: number) => {
     setOpen(true)
     setId(id)
@@ -53,7 +53,7 @@ export default function UtilitiesList() {
       }
 
     },
-    [unpaidUtils, search, utilitiesMutation]
+    [unpaidUtils, search, utilitiesMutation,auth]
   )
 
   if (utilitiesMutation.isFetching) {
@@ -75,9 +75,9 @@ export default function UtilitiesList() {
       <DeletionModal open={open} handleClose={handleClose} id={myid!} type='utility' errors={errors!} setErrors={setErrors} />
 
       <div className='flex justify-center mt-4 p-2  w-full'>
-
-        {(utilities && utilities.length === 0) && <div className={`${colorMode ? "text-slate-300" : ""} inline-flex mx-auto text-center text-lg `}> <strong>No utilities found</strong></div>}
-        {(utilities === undefined) && <div className={`${colorMode ? "text-slate-300" : ""} inline-flex mx-auto text-center text-lg `}> <SpinningCircles/> </div>}
+      {(utilitiesMutation.isFetching) && <div className={`${colorMode ? "text-slate-300" : ""} inline-flex mx-auto text-center text-lg `}> <SpinningCircles/> </div>}
+        {(utilities.length === 0) && <div className={`${colorMode ? "text-slate-300" : ""} inline-flex mx-auto text-center text-lg `}> <strong>No utilities found</strong></div>}
+        {(utilities === undefined ) && <div className={`${colorMode ? "text-slate-300" : ""} inline-flex mx-auto text-center text-lg `}> <SpinningCircles/> </div>}
         {utilities?.length > 0 && <table className='w-full  md:w-[85%] bg-indigo-400 shadow'>
           <thead>
             <tr className="border-b-2 text-xs  md:text-base border-black">
