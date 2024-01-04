@@ -6,7 +6,7 @@ export default function Downloads(){
     const {colorMode} = useAppContext()
 
     async function handleDownload(link: string) {
-        const url = "https://rental-backend-0m96.onrender.com/v1/"+link
+        const url = "https://rental-back-end.onrender.com/v1/"+link
         try {
             const res = await axios.get(url, {
                 headers:{
@@ -14,7 +14,7 @@ export default function Downloads(){
             
                 responseType:"arraybuffer"})
                async function  file(){
-                    console.log(res)
+                   
                     // Create a Blob from the arraybuffer
                     const blob = new Blob([res.data], { type: 'application/pdf' });
         
