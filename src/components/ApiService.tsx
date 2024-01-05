@@ -51,7 +51,7 @@ const changePassword = async (data: ChangePasswordFormdata) => {
     return res.data;
 }
 const fetchUsers = async () => {
-    const res = await apiClient.get("auth",{
+    const res = await apiClient.get("auth/all-users",{
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${localStorage.getItem("key")}`

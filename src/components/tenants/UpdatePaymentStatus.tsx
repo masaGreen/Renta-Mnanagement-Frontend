@@ -71,7 +71,7 @@ export default function UpdateStatus() {
                         {errors && <div className="text-red-600"><p>{errors}</p></div>}
                         <button type="submit" onClick={handleLoading}
                                 className={`${!loadingCircle ? "p-1 bg-indigo-400 text-slate-800 font-semibold text-lg rounded hover:bg-indigo-500 transition ease-in-out 300" : "hidden"}`
-                                }>register</button>
+                                }>update</button>
                                 
                             {loadingCircle && <div className="flex  p-1 gap-1 rounded bg-indigo-500 text-red-500 items-center justify-center font-semibold ">
                                 <SpinningCircles />
